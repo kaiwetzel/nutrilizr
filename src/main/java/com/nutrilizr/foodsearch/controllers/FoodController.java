@@ -34,13 +34,17 @@ public class FoodController {
 	 * Search for Fat Secret food items
 	 * 
 	 * @param query The string to search foods for.
+	 * @param page Optional page number in the paged result list. 
 	 */
 	@GetMapping("/search")
-	public List<CompactFood> search(@RequestParam String query) {
+	public List<CompactFood> search(
+			@RequestParam String query, 
+			@RequestParam(required = false, defaultValue = "0") int page) {
+		
 		FatsecretService service = new FatsecretService(key, secret);
 		
 		// Retrieve the list of food items on the requested page for the query string:		
-		Response<CompactFood> response = service.searchFoods(query);
+		Response<CompactFood> response = service.searchFoods(query, page);
 		
 		// Return list of compact food items:
 		List<CompactFood> results = response.getResults();
