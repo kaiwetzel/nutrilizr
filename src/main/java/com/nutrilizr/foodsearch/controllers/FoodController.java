@@ -2,11 +2,8 @@ package com.nutrilizr.foodsearch.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.PropertySources;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,9 +30,6 @@ public class FoodController {
 	@Value("${fatsecret.secret}")
 	private String secret;
 	
-	@Autowired
-	private ConfigurableEnvironment configurableEnvironment;
-	
 	/**
 	 * Search for Fat Secret food items
 	 * 
@@ -43,12 +37,6 @@ public class FoodController {
 	 */
 	@GetMapping("/search")
 	public List<CompactFood> search(@RequestParam String query) {
-		PropertySources sources = configurableEnvironment.getPropertySources();
-		sources.forEach(source -> {
-		    // Object env = source.getSource();
-		    System.out.println(source.getName());
-		});
-		
 		FatsecretService service = new FatsecretService(key, secret);
 		
 		// Retrieve the list of food items on the requested page for the query string:		
