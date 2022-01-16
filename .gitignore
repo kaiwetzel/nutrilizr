@@ -1,3 +1,6 @@
+### Prevent private configuration files from being submitted to git ###
+secret.properties
+
 # Compiled class file
 *.class
 
