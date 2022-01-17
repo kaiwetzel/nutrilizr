@@ -32,7 +32,7 @@ public class FoodController {
 	private String secret;
 	
 	/**
-	 * Search for Fat Secret food items
+	 * Search for FatSecret food items
 	 * 
 	 * @param query The string to search foods for.
 	 * @param page Optional page number in the paged result list. 
