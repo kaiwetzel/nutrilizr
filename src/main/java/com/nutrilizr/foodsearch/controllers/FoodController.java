@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fatsecret.platform.model.CompactFood;
+import com.fatsecret.platform.model.Food;
 import com.fatsecret.platform.services.FatsecretService;
 import com.fatsecret.platform.services.Response;
 
@@ -50,5 +51,21 @@ public class FoodController {
 		List<CompactFood> results = response.getResults();
 		
 		return results;
+	}
+	
+	/**
+	 * Provide details for a FatSecret food item
+	 * 
+	 * @param id The food ID to provide information for.
+	 */
+	@GetMapping("")
+	public Food findFoodById(@RequestParam long id) {
+		FatsecretService service = new FatsecretService(key, secret);
+		
+		// Retrieve the food item details for the provided food id:		
+		Food food = service.getFood(id);
+		
+		// Return the found food item:
+		return food;
 	}
 }

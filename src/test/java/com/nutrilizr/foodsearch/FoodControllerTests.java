@@ -40,4 +40,23 @@ public class FoodControllerTests {
 			.andExpect(jsonPath("$").isArray())
 			.andExpect(jsonPath("$.length()", is(50)));
 	}
+	
+	/**
+	 * Basic test to check if the food endpoint is working correctly, connecting to the
+	 * Fat Secrets server successfully and providing details for the requested food item.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	void findFoodItemById() throws Exception {
+		// Since only the controller is tested, no "/api" prefix is used for the requested URL:
+		final ResultActions result = mvc.perform(get("/food")
+			.queryParam("id", "4424")
+			.contentType(MediaType.APPLICATION_JSON));
+		
+		result
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$.id", is(4424)));
+	}
 }

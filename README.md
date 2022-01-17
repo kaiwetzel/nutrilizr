@@ -28,4 +28,10 @@ To search for food items utilizing the **fatsecret.com** API, submit a request s
 http://localhost:8080/api/food/search?query=pasta&page=42
 ```
 
+Or retrieve detailed information about a food item, e.g.
+
+```
+http://localhost:8080/api/food?id=4424
+```
+
 Enjoy!
